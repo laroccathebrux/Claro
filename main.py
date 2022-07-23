@@ -19,5 +19,7 @@ def main():
     PORT = config["MARIADB"]['PORT']
     DB   = config["MARIADB"]['DB']
 
+    print("Credentials")
+
 if __name__ == "__main__":
     main()
