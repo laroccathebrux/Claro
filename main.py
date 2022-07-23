@@ -2,6 +2,7 @@ import pandas as pd
 import mariadb
 import sys
 import configparser
+import os
 
 def main():
     """
@@ -18,6 +19,12 @@ def main():
     HOST = config["MARIADB"]['HOST']
     PORT = config["MARIADB"]['PORT']
     DB   = config["MARIADB"]['DB']
+
+    # ONLY FOR LOCAL TESTING #######################################
+    os.environ['AZURE_TENANT_ID'] = config["AZURE"]['AZURE_TENANT_ID']
+    os.environ['AZURE_CLIENT_ID'] = config["AZURE"]["AZURE_CLIENT_ID"]
+    os.environ['AZURE_CLIENT_SECRET'] = config["AZURE"]["AZURE_CLIENT_SECRET"]
+    #############################################################
 
     print("Credentials")
 
