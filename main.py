@@ -3,6 +3,7 @@ import mariadb
 import sys
 import configparser
 import os
+from requests import get
 
 def main():
     """
@@ -27,7 +28,9 @@ def main():
     os.environ['AZURE_CLIENT_SECRET'] = config["AZURE"]["AZURE_CLIENT_SECRET"]
     #############################################################
     """
-    print("Hello World")
+    
+    ip = get('https://api.ipify.org').content.decode('utf8')
+    print('My public IP address is: {}'.format(ip))
 
 if __name__ == "__main__":
     main()
