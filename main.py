@@ -9,7 +9,7 @@ def main():
     Load config file with database credentials,
     Connects to the database and processes data
     Define credentials to Azure
-    :rtype: object
+    :rtype: object 
     """
     config = configparser.ConfigParser()
     config.read('Credentials.ini')
