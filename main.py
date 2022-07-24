@@ -21,8 +21,8 @@ def main():
     DB   = config["MARIADB"]['DB']
 
     # ONLY FOR LOCAL TESTING #######################################
-    os.environ['AZURE_TENANT_ID'] = config["AZURE"]['AZURE_TENANT_ID']
-    os.environ['AZURE_CLIENT_ID'] = config["AZURE"]["AZURE_CLIENT_ID"]
+    os.environ['AZURE_TENANT_ID']     = config["AZURE"]['AZURE_TENANT_ID']
+    os.environ['AZURE_CLIENT_ID']     = config["AZURE"]["AZURE_CLIENT_ID"]
     os.environ['AZURE_CLIENT_SECRET'] = config["AZURE"]["AZURE_CLIENT_SECRET"]
     #############################################################
 
