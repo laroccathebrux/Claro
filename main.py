@@ -27,7 +27,7 @@ def main():
     os.environ['AZURE_CLIENT_SECRET'] = config["AZURE"]["AZURE_CLIENT_SECRET"]
     #############################################################
     """
-    print("Credentials")
+    print("Hello World")
 
 if __name__ == "__main__":
     main()
