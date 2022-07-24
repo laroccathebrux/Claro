@@ -1,0 +1,8 @@
+version: '3.4'
+
+services:
+  claro:
+    image: claro
+    build:
+      context: .
+      dockerfile: ./Dockerfile

@@ -14,6 +14,7 @@ def main():
     config = configparser.ConfigParser()
     config.read('Credentials.ini')
 
+    """
     USER = config["MARIADB"]['USER'] 
     PASS = config["MARIADB"]['PASS']
     HOST = config["MARIADB"]['HOST']
@@ -25,7 +26,7 @@ def main():
     os.environ['AZURE_CLIENT_ID']     = config["AZURE"]["AZURE_CLIENT_ID"]
     os.environ['AZURE_CLIENT_SECRET'] = config["AZURE"]["AZURE_CLIENT_SECRET"]
     #############################################################
-
+    """
     print("Credentials")
 
 if __name__ == "__main__":
