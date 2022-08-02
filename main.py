@@ -49,9 +49,23 @@ def main():
     # Get Cursor
     #cur = conn.cursor()
 
-    df_rel_ate_resumolocal = pd.read_sql("select * from rel_ate_resumolocal", conn);
+    df_rel_ate_resumolocal     = pd.read_sql("select * from rel_ate_resumolocal", conn);
+    df_rel_pro_estoquefisico   = pd.read_sql("select * from rel_pro_estoquefisico", conn);
+    df_uti_controleresidencial = pd.read_sql("select * from uti_controleresidencial", conn);
+    df_uti_met_local           = pd.read_sql("select * from uti_met_local", conn);
+    df_uti_met_vendedor        = pd.read_sql("select * from uti_met_vendedor", conn);
+    df_uti_statusged           = pd.read_sql("select * from uti_statusged", conn);
 
-    print(df_rel_ate_resumolocal.head(5))
+    print("Saving CSV files...")
+
+    df_rel_ate_resumolocal.to_csv("csv/rel_ate_resumolocal.csv")
+    df_rel_pro_estoquefisico.to_csv("csv/rel_pro_estoquefisico.csv")
+    df_uti_controleresidencial.to_csv("csv/uti_controleresidencial.csv")
+    df_uti_met_local.to_csv("csv/uti_met_local.csv")
+    df_uti_met_vendedor.to_csv("csv/uti_met_vendedor.csv")
+    df_uti_statusged.to_csv("csv/uti_statusged.csv")
+
+    print("CSV files saved")
 
 if __name__ == "__main__":
     main()
