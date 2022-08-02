@@ -25,7 +25,7 @@ def main():
     config.read("credentials.ini")
 
     HOST = config["MARIADB"]["HOST"]
-    PORT = config["MARIADB"]["PORT"]
+    PORT = int(config["MARIADB"]["PORT"])
     USER = config["MARIADB"]["USER"]
     PASS = config["MARIADB"]["PASS"]
     DBSE = config["MARIADB"]["DBSE"]
