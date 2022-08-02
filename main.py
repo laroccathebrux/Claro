@@ -65,9 +65,9 @@ def main():
 
     print("Saving CSV files...")
 
-    df_rel_ate_resumolocal.to_csv("csv/rel_ate_resumolocal.csv")
+    output = df_rel_ate_resumolocal.to_csv("csv/rel_ate_resumolocal.csv")
     blob_client = container_client.get_blob_client("rel_ate_resumolocal.csv")
-    blob_client.upload_blob(df_rel_ate_resumolocal, blob_type="BlockBlob")
+    blob_client.upload_blob(output, blob_type="BlockBlob")
 
     df_rel_pro_estoquefisico.to_csv("csv/rel_pro_estoquefisico.csv")
     
