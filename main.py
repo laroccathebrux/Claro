@@ -49,10 +49,7 @@ def main():
     # Get Cursor
     cur = conn.cursor()
 
-    cur.execute("SHOW TABLES;")
-
-    for TABLES in cur:
-        print(f"Table: {TABLES}")
+    df_rel_ate_resumolocal = pd.read_sql("select * from rel_ate_resumolocal", cur);
 
 if __name__ == "__main__":
     main()
