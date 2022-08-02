@@ -47,9 +47,9 @@ def main():
         sys.exit(1)
 
     # Get Cursor
-    cur = conn.cursor()
+    #cur = conn.cursor()
 
-    df_rel_ate_resumolocal = pd.read_sql("select * from rel_ate_resumolocal", cur);
+    df_rel_ate_resumolocal = pd.read_sql("select * from rel_ate_resumolocal", conn);
 
     print(df_rel_ate_resumolocal.head(5))
 
