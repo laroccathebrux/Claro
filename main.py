@@ -2,6 +2,7 @@ import pandas as pd
 import mariadb
 import sys
 import configparser
+from azure.storage.blob import BlockBlobService
 
 def getData(cur):
     """
@@ -30,6 +31,10 @@ def main():
     PASS = config["MARIADB"]["PASS"]
     DBSE = config["MARIADB"]["DBSE"]
 
+    ACCNAME = config["AZURE"]["ACCNAME"]
+    ACCKEY  = config["AZURE"]["ACCKEY"]
+    CONTAINER = config["AZURE"]["CONTAINER"]
+
     print(USER)
 
     # Connect to MariaDB Platform
@@ -56,15 +61,28 @@ def main():
     df_uti_met_vendedor        = pd.read_sql("select * from uti_met_vendedor", conn);
     df_uti_statusged           = pd.read_sql("select * from uti_statusged", conn);
 
+    blobService = BlockBlobService(account_name=ACCNAME, account_key=ACCKEY)
+
     print("Saving CSV files...")
 
     df_rel_ate_resumolocal.to_csv("csv/rel_ate_resumolocal.csv")
-    df_rel_pro_estoquefisico.to_csv("csv/rel_pro_estoquefisico.csv")
-    df_uti_controleresidencial.to_csv("csv/uti_controleresidencial.csv")
-    df_uti_met_local.to_csv("csv/uti_met_local.csv")
-    df_uti_met_vendedor.to_csv("csv/uti_met_vendedor.csv")
-    df_uti_statusged.to_csv("csv/uti_statusged.csv")
+    blobService.create_blob_from_text(CONTAINER, 'rel_ate_resumolocal.csv', df_rel_ate_resumolocal)
 
+    df_rel_pro_estoquefisico.to_csv("csv/rel_pro_estoquefisico.csv")
+    blobService.create_blob_from_text(CONTAINER, 'rel_pro_estoquefisico.csv', df_rel_pro_estoquefisico)
+
+    df_uti_controleresidencial.to_csv("csv/uti_controleresidencial.csv")
+    blobService.create_blob_from_text(CONTAINER, 'uti_controleresidencial.csv', df_uti_controleresidencial)
+
+    df_uti_met_local.to_csv("csv/uti_met_local.csv")
+    blobService.create_blob_from_text(CONTAINER, 'uti_met_local.csv', df_uti_met_local)
+
+    df_uti_met_vendedor.to_csv("csv/uti_met_vendedor.csv")
+    blobService.create_blob_from_text(CONTAINER, 'uti_met_vendedor.csv', df_uti_met_vendedor)
+
+    df_uti_statusged.to_csv("csv/uti_statusged.csv")
+    blobService.create_blob_from_text(CONTAINER, 'uti_statusged.csv', df_uti_statusged)
+    
     print("CSV files saved")
 
 if __name__ == "__main__":
