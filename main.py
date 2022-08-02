@@ -30,6 +30,8 @@ def main():
     PASS = config["MARIADB"]["PASS"]
     DBSE = config["MARIADB"]["DBSE"]
 
+    print(USER)
+
     # Connect to MariaDB Platform
     try:
         conn = mariadb.connect(
