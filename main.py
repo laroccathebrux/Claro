@@ -71,18 +71,29 @@ def main():
     blob_client.upload_blob(output, blob_type="BlockBlob")
 
     df_rel_pro_estoquefisico.to_csv("csv/rel_pro_estoquefisico.csv")
-    
+    output = df_rel_pro_estoquefisico.to_csv(index=False, encoding="utf-8")
+    blob_client = container_client.get_blob_client("rel_pro_estoquefisico.csv")
+    blob_client.upload_blob(output, blob_type="BlockBlob")
 
     df_uti_controleresidencial.to_csv("csv/uti_controleresidencial.csv")
-    
+    output = df_uti_controleresidencial.to_csv(index=False, encoding="utf-8")
+    blob_client = container_client.get_blob_client("uti_controleresidencial.csv")
+    blob_client.upload_blob(output, blob_type="BlockBlob")
 
     df_uti_met_local.to_csv("csv/uti_met_local.csv")
-    
+    output = df_uti_met_local.to_csv(index=False, encoding="utf-8")
+    blob_client = container_client.get_blob_client("uti_met_local.csv")
+    blob_client.upload_blob(output, blob_type="BlockBlob")
 
     df_uti_met_vendedor.to_csv("csv/uti_met_vendedor.csv")
-    
+    output = df_uti_met_vendedor.to_csv(index=False, encoding="utf-8")
+    blob_client = container_client.get_blob_client("uti_met_vendedor.csv")
+    blob_client.upload_blob(output, blob_type="BlockBlob")
 
     df_uti_statusged.to_csv("csv/uti_statusged.csv")
+    output = df_uti_statusged.to_csv(index=False, encoding="utf-8")
+    blob_client = container_client.get_blob_client("uti_statusged.csv")
+    blob_client.upload_blob(output, blob_type="BlockBlob")
     
     
     print("CSV files saved")
