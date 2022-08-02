@@ -51,5 +51,7 @@ def main():
 
     df_rel_ate_resumolocal = pd.read_sql("select * from rel_ate_resumolocal", cur);
 
+    print(df_rel_ate_resumolocal.head(5))
+
 if __name__ == "__main__":
     main()
