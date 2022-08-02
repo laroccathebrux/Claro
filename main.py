@@ -49,5 +49,10 @@ def main():
     # Get Cursor
     cur = conn.cursor()
 
+    cur.execute("SHOW TABLES;")
+
+    for TABLES in cur:
+        print(f"Table: {TABLES}")
+
 if __name__ == "__main__":
     main()
