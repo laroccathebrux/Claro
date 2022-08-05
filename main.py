@@ -4,17 +4,6 @@ import sys
 import configparser
 from azure.storage.blob import BlobServiceClient
 
-def getData(cur):
-    """
-    cur.execute(
-    "SELECT first_name,last_name FROM employees WHERE first_name=?", 
-    (some_name,))
-
-    for (first_name, last_name) in cur:
-        print(f"First Name: {first_name}, Last Name: {last_name}")
-    """
-    return True
-
 def main():
     """
     Load config file with database credentials,
@@ -34,8 +23,6 @@ def main():
     ACCKEY  = config["AZURE"]["ACCKEY"]
     CONTAINER = config["AZURE"]["CONTAINER"]
 
-    print(USER)
-
     # Connect to MariaDB Platform
     try:
         conn = mariadb.connect(
@@ -53,44 +40,38 @@ def main():
     # Get Cursor
     #cur = conn.cursor()
 
-    df_rel_ate_resumolocal     = pd.read_sql("select * from rel_ate_resumolocal", conn);
-    df_rel_pro_estoquefisico   = pd.read_sql("select * from rel_pro_estoquefisico", conn);
-    df_uti_controleresidencial = pd.read_sql("select * from uti_controleresidencial", conn);
-    df_uti_met_local           = pd.read_sql("select * from uti_met_local", conn);
-    df_uti_met_vendedor        = pd.read_sql("select * from uti_met_vendedor", conn);
-    df_uti_statusged           = pd.read_sql("select * from uti_statusged", conn);
+    df_rel_ate_resumolocal     = pd.read_sql("select * from rel_ate_resumolocal", conn)
+    df_rel_pro_estoquefisico   = pd.read_sql("select * from rel_pro_estoquefisico", conn)
+    df_uti_controleresidencial = pd.read_sql("select * from uti_controleresidencial", conn)
+    df_uti_met_local           = pd.read_sql("select * from uti_met_local", conn)
+    df_uti_met_vendedor        = pd.read_sql("select * from uti_met_vendedor", conn)
+    df_uti_statusged           = pd.read_sql("select * from uti_statusged", conn)
 
     blob_service_client = BlobServiceClient.from_connection_string(ACCKEY)
     container_client = blob_service_client.get_container_client(CONTAINER)
 
     print("Saving CSV files...")
 
-    df_rel_ate_resumolocal.to_csv("csv/rel_ate_resumolocal.csv")
     output = df_rel_ate_resumolocal.to_csv(index=False, encoding="utf-8")
     blob_client = container_client.get_blob_client("rel_ate_resumolocal.csv")
     blob_client.upload_blob(output, blob_type="BlockBlob", overwrite=True)
 
-    df_rel_pro_estoquefisico.to_csv("csv/rel_pro_estoquefisico.csv")
     output = df_rel_pro_estoquefisico.to_csv(index=False, encoding="utf-8")
     blob_client = container_client.get_blob_client("rel_pro_estoquefisico.csv")
     blob_client.upload_blob(output, blob_type="BlockBlob", overwrite=True)
 
-    df_uti_controleresidencial.to_csv("csv/uti_controleresidencial.csv")
     output = df_uti_controleresidencial.to_csv(index=False, encoding="utf-8")
     blob_client = container_client.get_blob_client("uti_controleresidencial.csv")
     blob_client.upload_blob(output, blob_type="BlockBlob", overwrite=True)
 
-    df_uti_met_local.to_csv("csv/uti_met_local.csv")
     output = df_uti_met_local.to_csv(index=False, encoding="utf-8")
     blob_client = container_client.get_blob_client("uti_met_local.csv")
     blob_client.upload_blob(output, blob_type="BlockBlob", overwrite=True)
 
-    df_uti_met_vendedor.to_csv("csv/uti_met_vendedor.csv")
     output = df_uti_met_vendedor.to_csv(index=False, encoding="utf-8")
     blob_client = container_client.get_blob_client("uti_met_vendedor.csv")
     blob_client.upload_blob(output, blob_type="BlockBlob", overwrite=True)
 
-    df_uti_statusged.to_csv("csv/uti_statusged.csv")
     output = df_uti_statusged.to_csv(index=False, encoding="utf-8")
     blob_client = container_client.get_blob_client("uti_statusged.csv")
     blob_client.upload_blob(output, blob_type="BlockBlob", overwrite=True)
