@@ -37,9 +37,6 @@ def main():
         print(f"Error connecting to MariaDB Platform: {e}")
         sys.exit(1)
 
-    # Get Cursor
-    #cur = conn.cursor()
-
     df_rel_ate_resumolocal     = pd.read_sql("select * from rel_ate_resumolocal", conn)
     df_rel_pro_estoquefisico   = pd.read_sql("select * from rel_pro_estoquefisico", conn)
     df_uti_controleresidencial = pd.read_sql("select * from uti_controleresidencial", conn)
